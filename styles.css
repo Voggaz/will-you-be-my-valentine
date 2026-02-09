@@ -56,6 +56,22 @@ h1 {
   white-space: nowrap;
 }
 
+.yes-button.takeover {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  transform: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2.8rem, 11vw, 9rem);
+}
+
 .gif_container img {
   max-width: 100%;
   height: auto;

@@ -12,17 +12,26 @@ const messages = [
 ];
 
 let messageIndex = 0;
+let noClickCount = 0;
 const YES_GROWTH_FACTOR = 1.25;
+const TAKEOVER_CLICKS = 10;
 
 document.addEventListener("DOMContentLoaded", () => {
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
-  const area = document.getElementById("buttonsArea");
 
-  if (!yesBtn || !noBtn || !area) {
+  if (!yesBtn || !noBtn) {
     console.error("Buttons not found. Check index.html ids.");
     return;
   }
+
+  const activateTakeover = () => {
+    if (yesBtn.classList.contains("takeover")) {
+      return;
+    }
+    yesBtn.style.fontSize = "";
+    yesBtn.classList.add("takeover");
+  };
 
   yesBtn.addEventListener("click", () => {
     window.location.href = "yes_page.html";
@@ -32,9 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1) Text ändern
     noBtn.textContent = messages[messageIndex];
     messageIndex = (messageIndex + 1) % messages.length;
+    noClickCount += 1;
 
     // 2) Yes größer machen
     const currentSize = parseFloat(getComputedStyle(yesBtn).fontSize);
     yesBtn.style.fontSize = `${currentSize * YES_GROWTH_FACTOR}px`;
+
+    // 3) Nach einigen No-Klicks übernimmt Yes den ganzen Screen
+    if (noClickCount >= TAKEOVER_CLICKS) {
+      activateTakeover();
+    }
   });
 });
