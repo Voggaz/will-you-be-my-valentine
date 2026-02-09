@@ -14,7 +14,7 @@ const messages = [
 let messageIndex = 0;
 let noClickCount = 0;
 const YES_GROWTH_FACTOR = 1.25;
-const TAKEOVER_CLICKS = 10;
+const TAKEOVER_CLICKS = 16;
 
 document.addEventListener("DOMContentLoaded", () => {
   const yesBtn = document.getElementById("yesBtn");
